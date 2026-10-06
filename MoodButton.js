@@ -3,12 +3,17 @@ import { Pressable, Text, StyleSheet } from "react-native";
 // Props:
 //   emoji   - e.g. "😊"
 //   label   - e.g. "Happy"
-//   onPress - function called when the button is tapped (added in Step 3)
-export default function MoodButton({ emoji, label, onPress }) {
+//   color   - accent color for the button (optional)
+//   onPress - called when the button is tapped
+export default function MoodButton({ emoji, label, color = "#ffffff", onPress }) {
   return (
     <Pressable
       onPress={onPress}
-      style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+      style={({ pressed }) => [
+        styles.button,
+        { backgroundColor: color },
+        pressed && styles.pressed,
+      ]}
     >
       <Text style={styles.emoji}>{emoji}</Text>
       <Text style={styles.label}>{label}</Text>
@@ -18,30 +23,29 @@ export default function MoodButton({ emoji, label, onPress }) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#ffffff",
-    borderRadius: 16,
-    paddingVertical: 14,
-    paddingHorizontal: 18,
+    width: 96,
+    height: 104,
+    borderRadius: 24,
     alignItems: "center",
-    margin: 6,
-    minWidth: 80,
+    justifyContent: "center",
+    margin: 8,
     shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 3,
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 6,
   },
   pressed: {
-    opacity: 0.6,
-    transform: [{ scale: 0.95 }],
+    opacity: 0.8,
+    transform: [{ scale: 0.92 }],
   },
   emoji: {
-    fontSize: 36,
+    fontSize: 40,
   },
   label: {
-    marginTop: 4,
+    marginTop: 6,
     fontSize: 14,
-    color: "#444",
-    fontWeight: "600",
+    color: "#1f1f3a",
+    fontWeight: "700",
   },
 });
